@@ -6,13 +6,22 @@
          colors="true"
          cacheDirectory=".phpunit.cache"
          beStrictAboutCoverageMetadata="true"
+         testdox="true"
 >
 <!--         requireCoverageMetadata="true"-->
   <testsuites>
     <testsuite name="default">
       <directory suffix="Test.php">tests</directory>
     </testsuite>
+    <testsuite name="Fixtures">
+      <directory>tests/fixtures</directory>
+    </testsuite>
   </testsuites>
+
+  <php>
+    <const name="BASEURL" value="http://localhost:8000" />
+  </php>
+
   <source>
     <include>
       <directory suffix=".php">src</directory>

@@ -20,7 +20,7 @@ class EmailTest extends TestCase
         return [
             'valid result 1*2=2' =>[1,2,2],
             'valid result 2*2=4' => [2,2,4],
-            'invalid result 3*3=12' => [3,3,12]
+            'invalid result 3*3=12' => [3,3,9]
         ];
     }
 

@@ -59,6 +59,7 @@ class BMICalculatorTest extends TestCase
         $result = $this->bmiCalculator->calculate();
 
         $this->assertEquals($expectedValue, $result);
+        $this->assertEquals(BASEURL, 'http://localhost:8000');
     }
 
     public function testWrongParamExceptionIsThrownWhenHeightLessOrEqual0()
