@@ -3,6 +3,9 @@
 namespace App;
 
 class Database {
+    /**
+     * @codeCoverageIgnore
+     */
     public function getEmailAndLastName()
     {
         echo 'real database fetch';
@@ -27,6 +30,19 @@ class User
         $this->database->getEmailAndLastName();
 
         return $this->name . ' ' . $this->lastName;
+    }
+
+    public function someOperation($array)
+    {
+        $count = count($array);
+
+        if ($count == 0) {
+            return 'error';
+        } elseif ($count == 1 && $array[0] == 0) {
+            return 'error';
+        } else {
+            return 'ok';
+        }
     }
 
     protected function hashPassword()

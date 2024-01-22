@@ -4,7 +4,7 @@ namespace App;
 
 class Session implements SessionInterface
 {
-
+    // @codeCoverageIgnoreStart
     public function open()
     {
         echo 'session opened';
@@ -19,4 +19,5 @@ class Session implements SessionInterface
     {
         echo "$product was written to session";
     }
+    // @codeCoverageIgnoreEnd
 }
