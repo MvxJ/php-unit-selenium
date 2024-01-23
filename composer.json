@@ -6,7 +6,9 @@
 
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "App\\": "src/",
+            "App\\Stub\\": "src/forStubMockTesting",
+            "App\\Abstract\\": "src/abstractClassesAndTraits"
         },
         "classmap": [
             "tests/traits"
