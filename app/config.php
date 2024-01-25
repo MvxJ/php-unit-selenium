@@ -3,6 +3,13 @@
 return [
     'displayErrorDetails' => true,
     'db' => [
-        'user' => 'app'
+        'driver' => 'sqlite',
+        'host' => 'localhost',
+        'database' => '/home/mvxj/sites/php-unit-selenium/app/database/db.sqlite',
+        'username' =>'user',
+        'password' => 'password',
+        'charset' => 'utf8',
+        'collation' =>'utf8_unicode_ci',
+        'prefix' => ''
     ]
 ];

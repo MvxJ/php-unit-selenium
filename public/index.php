@@ -21,6 +21,7 @@ ServerRequestCreatorFactory::setSlimHttpDecoratorsAutomaticDetection(false);
 $app = AppFactory::create();
 
 require '../app/dependencies.php';
+$config = require '../app/bootstrap.php';
 require '../app/routes.php';
 
 $app->run();
