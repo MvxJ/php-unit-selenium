@@ -31,4 +31,36 @@ class CategoryController extends BaseController
 
         return $response;
     }
+
+    public function editCategory(Request $request, Response $response, $args)
+    {
+        $categoryId = $args['id'];
+        $category = ['name' => 'Electronics', 'parent' => null];
+        $response = $this->container->get('view')->render(
+            $response,
+            'home.phtml',
+            ['editedCategory' => $category]
+        );
+
+        return $response;
+    }
+
+    public function saveCategory(Request $request, Response $response, $args)
+    {
+        $data = $request->getParsedBody();
+
+        if (empty($data['category_name']) || empty($data['category_name'])) {
+            $categorySaved = false;
+        } else {
+            $categorySaved = true;
+        }
+
+        $response = $this->container->get('view')->render(
+            $response,
+            'home.phtml',
+            ['categorySaved' => $categorySaved]
+        );
+
+        return $response;
+    }
 }

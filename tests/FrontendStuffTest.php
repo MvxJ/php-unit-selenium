@@ -80,4 +80,46 @@ class FrontendStuffTest extends Selenium2TestCase
 
         $this->markTestIncomplete('Currently not completed');
     }
+
+    public function testCanSeeFormValidation()
+    {
+        $this->url('');
+        $button = $this->byCssSelector('input[type="submit"]');
+        $button->submit();
+
+        $this->assertStringContainsString('Fill correctly the form', $this->source());
+        $this->back();
+
+        $categoryName = $this->byName('category_name');
+        $categoryName->value('Name');
+
+        $description = $this->byName('category_description');
+        $description->value('Description');
+
+        $button = $this->byCssSelector('input[type="submit"]');
+        $button->submit();
+
+        $this->assertStringContainsString('Category was saved', $this->source());
+
+        $this->markTestIncomplete('Need to finish be');
+    }
+
+    public function canSeeNestedCategories()
+    {
+        $this->url('');
+        $categories = $this->elements($this->using('css selector')->value('ul.dropdown li'));
+
+        $this->assertCount(18, $categories);
+
+        $element1 = $this->byCssSelector('ul.dropdown > li:nth-child(2) > a');
+        $element2 = $this->byCssSelector('ul.dropdown > li:nth-child(3) > a');
+        $element3 = $this->byCssSelector('ul.dropdown > li:nth-child(4) > a');
+//        $element4 = $this->byCssSelector('ul.dropdown > :nth-child(2) > :nth-child(2) > :nth-child(1) > a');
+        $element4 = $this->byXPath('//ul[@class="dropdown menu"]/l[2]/ul[1]/li[1]/a');
+
+        $this->assertStringContainsString('Electronics', $element1->text());
+        $this->assertStringContainsString('Videos', $element2->text());
+        $this->assertStringContainsString('Software', $element3->text());
+        $this->assertStringContainsString('Monitors', $element4->text());
+    }
 }
