@@ -1,6 +1,8 @@
 <?php
 
-use App\Controllers\FirstController;
+use App\Controllers\HomeController;
+use App\Controllers\CategoryController;
 
-$app->get('/hello/{name}', FirstController::class.':home');
-//$app->post('/hello/{name}', FirstController::class.':home');
+$app->get('/', HomeController::class.':home');
+$app->get('/delete-category/{id}', CategoryController::class.':deleteCategory');
+$app->get('/show-category/{id}', CategoryController::class.':showCategory');
