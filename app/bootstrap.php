@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Capsule\Manager;
 use App\Models\Category;
+use App\Services\CategoryFactory;
 
 //$container->set('db', function ($container) {
 $capsule = new Manager();
@@ -11,5 +12,6 @@ $capsule->bootEloquent();
 
 //    return $capsule;
 //});
-
-$container->view->addAtribute('categories', Category::all());
+$view = $container->get('view');
+$view->addAttribute('categories', CategoryFactory::create());
+$container->set('view', $view);

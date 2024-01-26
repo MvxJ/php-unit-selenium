@@ -36,24 +36,6 @@ class FrontendStuffTest extends Selenium2TestCase
         $this->assertTrue(true);
     }
 
-    /**
-     * @skip
-     */
-    public function canSeeCorrectMessageAfterDeletingCategory()
-    {
-        $this->url('show-category/1');
-        $this->clickOnElement('delete-category-confirmation');
-        $this->waitUntil(function () {
-            if ($this->alertIsPresent()) return true;
-
-            return false;
-        }, 4000);
-
-        $this->acceptAlert();
-        $this->assertStringContainsString('Category was deleted', $this->source());
-        $this->markTestIncomplete('Should appear after deleting category.');
-    }
-
     public function testCanSeeEditAndDetailLinksAndCategoryName()
     {
         $this->url('show-category/1');
@@ -66,8 +48,7 @@ class FrontendStuffTest extends Selenium2TestCase
         $editLink = $this->byLinkText('Edit');
         $href = $editLink->attribute('href');
         $this->assertStringContainsString('edit-category/1', $href);
-
-        $this->markTestIncomplete('Category name, description, edit detail links from fe');
+        $this->asesertStringContains('description of electronics', $this->source());
     }
 
     public function testCanSeeEDitCategoryMessage()
@@ -77,8 +58,6 @@ class FrontendStuffTest extends Selenium2TestCase
         $editLink->click();
 
         $this->assertStringContainsString('Edit', $this->source());
-
-        $this->markTestIncomplete('Currently not completed');
     }
 
     public function testCanSeeFormValidation()
@@ -121,5 +100,21 @@ class FrontendStuffTest extends Selenium2TestCase
         $this->assertStringContainsString('Videos', $element2->text());
         $this->assertStringContainsString('Software', $element3->text());
         $this->assertStringContainsString('Monitors', $element4->text());
+    }
+
+    public function canSeeCorrectMessageAfterDeletingCategory()
+    {
+        $this->url('show-category/1');
+        $this->clickOnElement('delete-category-confirmation');
+        $this->waitUntil(function () {
+            if ($this->alertIsPresent()) return true;
+
+            return false;
+        }, 4000);
+
+        $this->acceptAlert();
+        $this->assertStringContainsString('Category was deleted', $this->source());
+        $this->url();
+        $this->assertNotRegExp('@Computers</a>@', $this->source());
     }
 }

@@ -64,9 +64,9 @@ class CategoryTreeTest extends TestCase
                 ],
                 '<ul><li>Electronics</li><li>Videos</li><li>Software</li></ul>',
                 [
-                    ['name' => 'Electronics'],
-                    ['name' => 'Videos'],
-                    ['name' => 'Software']
+                    ['name' => 'Electronics', 'id' => 1],
+                    ['name' => 'Videos', 'id' => 2],
+                    ['name' => 'Software', 'id' => 3]
                 ]
             ],
             'two level' => [
@@ -86,8 +86,8 @@ class CategoryTreeTest extends TestCase
                 ],
                 '<ul><li>Electronics<ul><li>Computers</li></ul></li></ul>',
                 [
-                    ['name' => 'Electronics'],
-                    ['name' => '&nbsp;&nbsp;Computers']
+                    ['name' => 'Electronics', 'id' => 1],
+                    ['name' => '&nbsp;&nbsp;Computers', 'id' => 2]
                 ]
             ],
             'three level' => [
@@ -120,9 +120,9 @@ class CategoryTreeTest extends TestCase
                 ],
                 '<ul><li>Electronics<ul><li>Computers<ul><li>Laptops</li></ul></li></ul></li></ul>',
                 [
-                    ['name' => 'Electronics'],
-                    ['name' => '&nbsp;&nbsp;Computers'],
-                    ['name' => '&nbsp;&nbsp;&nbsp;&nbsp;Laptops'],
+                    ['name' => 'Electronics', 'id' => 1],
+                    ['name' => '&nbsp;&nbsp;Computers', 'id' => 2],
+                    ['name' => '&nbsp;&nbsp;&nbsp;&nbsp;Laptops', 'id' => 3],
                 ]
             ]
         ];

@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Category;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
@@ -10,6 +11,9 @@ class CategoryController extends BaseController
     public function deleteCategory(Request $request, Response $response, $args)
     {
         $categoryId = $args['id'];
+        $category = Category::find($categoryId);
+        $category->delete();
+
         $response = $this->container->get('view')->render(
             $response,
             'home.phtml',
@@ -21,12 +25,12 @@ class CategoryController extends BaseController
 
     public function showCategory(Request $request, Response $response, $args)
     {
-        $categoryId = $args['id'];
-        $categoryName = 'Electronics';
+        $categoryId = explode(',', $args['id']);
+        $category = Category::find((int)$categoryId[0]);
         $response = $this->container->get('view')->render(
             $response,
             'home.phtml',
-            ['categoryName' => $categoryName]
+            ['category' => $category ]
         );
 
         return $response;
@@ -34,8 +38,8 @@ class CategoryController extends BaseController
 
     public function editCategory(Request $request, Response $response, $args)
     {
-        $categoryId = $args['id'];
-        $category = ['name' => 'Electronics', 'parent' => null];
+        $categoryId = explode(',', $args['id']);
+        $category = Category::find((int)$categoryId[0]);
         $response = $this->container->get('view')->render(
             $response,
             'home.phtml',

@@ -4,26 +4,19 @@ namespace App\Services;
 
 class HtmlList extends CategoryTree
 {
-    protected $htmlUlOpen = '<ul>';
-    protected $htmlUlClose = '</ul>';
-    protected  $htmlLiOpen = '<li>';
-    protected  $htmlLiClose = '</li>';
-
     public function makeUlList($afterConversionArray): string
     {
-        $this->categoryList .= $this->htmlUlOpen;
-
         foreach ($afterConversionArray as $value) {
-            $this->categoryList .= $this->htmlLiOpen . $value['name'];
+            $this->categoryList .= "<li><a href='htpp://localhost:8000/show-category/". $value['id'] . ',' . $value['name'] . "'>" . $value['name'] . "</a>";
 
             if (!empty($value['children'])) {
+                $this->categoryList .= "<ul class='sumbenu menu vertical' data-submenu>";
                 $this->makeUlList($value['children']);
+                $this->categoryList .= '</ul>';
             }
 
-            $this->categoryList .= $this->htmlLiClose;
+            $this->categoryList .= "</li>";
         }
-
-        $this->categoryList .= $this->htmlUlClose;
 
         return $this->categoryList;
     }

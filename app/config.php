@@ -5,7 +5,7 @@ return [
     'db' => [
         'driver' => 'sqlite',
         'host' => 'localhost',
-        'database' => '/home/mvxj/sites/php-unit-selenium/app/database/db.sqlite',
+        'database' => '/home/mjachymczak/sites/php-unit-selenium/app/database/db.sqlite',
         'username' =>'user',
         'password' => 'password',
         'charset' => 'utf8',

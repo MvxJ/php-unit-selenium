@@ -8,7 +8,10 @@ class ForSelectList extends CategoryTree
     {
 
         foreach ($convertedArray as $category) {
-            $this->categoryList[] = ['name' => str_repeat("&nbsp;", $repeat) . $category['name']];
+            $this->categoryList[] = [
+                'id' => $category['id'],
+                'name' => str_repeat("&nbsp;", $repeat) . $category['name']
+            ];
 
             if (!empty($category['children'])) {
                 $repeat += 2;
